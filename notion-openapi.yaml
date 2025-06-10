@@ -67,4 +67,3 @@ components:
 security:
   - bearerAuth: []
 
-# OAuth 設定は含まれていません。Bearer Token を Authentication に入力してください。
