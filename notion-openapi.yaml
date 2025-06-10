@@ -3,10 +3,13 @@ info:
   title: Notion API
   version: 1.0.0
   description: OpenAPI schema for connecting to Notion API endpoints
+  contact:
+    name: Kazumasa Takemoto
+    email: kazumasa_takemoto@entreis.co.jp
 servers:
-  - url: https://api.notion.com
+  - url: https://api.notion.com/v1
 paths:
-  /v1/pages/{page_id}:
+  /pages/{page_id}:
     get:
       summary: Retrieve a Notion page
       operationId: getPage
@@ -36,10 +39,13 @@ paths:
           application/json:
             schema:
               type: object
+              properties:
+                properties:
+                  type: object
       responses:
         '200':
           description: Page updated successfully
-  /v1/databases/{database_id}/query:
+  /databases/{database_id}/query:
     post:
       summary: Query a database
       operationId: queryDatabase
@@ -55,6 +61,9 @@ paths:
           application/json:
             schema:
               type: object
+              properties:
+                filter:
+                  type: object
       responses:
         '200':
           description: Query results
@@ -66,4 +75,3 @@ components:
       bearerFormat: API Key
 security:
   - bearerAuth: []
-
