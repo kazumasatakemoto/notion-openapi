@@ -1,0 +1,68 @@
+openapi: 3.0.0
+info:
+  title: Notion API
+  version: 1.0.0
+  description: OpenAPI schema for connecting to Notion API endpoints
+servers:
+  - url: https://api.notion.com
+paths:
+  /v1/pages/{page_id}:
+    get:
+      summary: Retrieve a Notion page
+      operationId: getPage
+      parameters:
+        - name: page_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Page retrieved successfully
+        '404':
+          description: Page not found
+    patch:
+      summary: Update a Notion page
+      operationId: updatePage
+      parameters:
+        - name: page_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Page updated successfully
+  /v1/databases/{database_id}/query:
+    post:
+      summary: Query a database
+      operationId: queryDatabase
+      parameters:
+        - name: database_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Query results
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+security:
+  - bearerAuth: []
